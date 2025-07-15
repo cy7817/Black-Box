@@ -1,76 +1,54 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <meta charset="UTF-8" />
-    <title> Navigation Bar </title>
-    <style>
-        p {
-            padding-left: 30px;
-            }
-        .top-button {
-            display: inline-block;    /* 버튼처럼 크기 적용 */
-            padding: 8px 16px;        /* 안쪽 여백 */
-            background-color: #444;   /* 버튼 배경 색 */
-            color: white;             /* 글자 색 */
-            font-weight: bold;
-            font-size: 24px;
-            font-family: "Playfair Display", serif;
-            text-decoration: none;    /* 밑줄 제거 */
-            border: none;             /* 테두리 제거 */
-            border-radius: 4px;       /* 모서리 둥글게 */
-            cursor: pointer;         /* 마우스 커서 변경 */
-            }
+    <meta charset="UTF-8">
+    <title>자율교육과정 웹사이트</title>
 
-.top-button:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-        .top-bar {
-            background-color: white;
-            padding: 10px;
-            text-align: left;
-            }
-
-        .main-menu {
-            background-color: #444;
-            overflow: hidden; /* 내부 요소가 넘치지 않도록 */
-            margin-top: 10px;
-        }
-
-        .main-menu a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-        }
-
-        .main-menu a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .top-button {
-            font-weight: bold;
-            font-size: 24px;
-            font-family: "Playfair Display", serif;
-        }
-    </style>
+    <link rel="stylesheet" href="./stylesheet.css">
 </head>
 <body>
-    <div class="top-bar">
-        <a href="/" class = "top-button"> Black Box </a>
-    </div>
+    <div id="page">
+        <header>
+            <div id="logo">
+                <img src="/blackbox.png" alt="logo">            
+            </div>
+        
+            <nav>
+                <ul>
+                    <li><a href="/index">HOME</a></li>
+                    <li><a href="/target1">INSTANCES</a></li>
+                    <li><a href="/target2">SURVEY</a></li>
+                    <li><a href="/target3">SOLUTIONS</a></li>
+                </ul>
+            </nav>
+        </header>
+     
+        
+       
+        <article id="content">
+            <section id="main">
+                <img src="/blackcompany.png" alt="main img">
+            </section>
 
-    <div class="main-menu">
-        <a href="/target1.html">소개</a>
-        <a href="/target2.html">설문</a>
-        <a href="/target3.html">결과</a>
-    </div>
+            <section>
+                <ul id="banner">
+                    
+                    <li><p><strong>신독점</strong>이란?</p>
+                        <p>신독점은 디지털 기술, 플랫폼, 데이터 등을 기반으로 네트워크 효과와 플랫폼 잠금 효과를 통해 경쟁을 배제하고 시장을 장악하는 현대적 독점 형태를 의미함</p></li>
+                    <li>
+                        <p><strong> SOLUTIONS 화면입니다! 현재 TEST 중입니다. </strong></p>
+                        <ul>
 
-    <p> 과독점 설문 결과 페이지입니다 <br> 줄 바꿈도 가능합니다 </p>
+                            <li><strong>네트워크 효과에 의한 진입 장벽:</strong> 사용자 수가 많을수록 플랫폼 가치가 커지기 때문에, 신규 기업이 경쟁하기 어려움.</li>
+                            <li><strong>데이터 독점 및 불균형:</strong> 방대한 사용자 데이터를 통해 경쟁사보다 더 강력한 서비스 제공, 데이터 기반 불공정 경쟁</li>
+                            <li><strong>플랫폼 종속 구조:</strong> 특정 생태계(iOS, 구글 생태계 등) 안에서만 앱이나 콘텐츠가 유통되어, 사용자의 자유 선택 제한</li>
+                            <li><strong>알고리즘 불투명성: </strong>콘텐츠 노출 기준이 불투명하고 특정 콘텐츠나 제품을 우선 노출시킴으로써 여론 형성에 영향</li>
+                            <li><strong>중소 사업자에 대한 불공정 행위:</strong> 입점업체의 데이터를 활용하여 유사 제품을 만들어 경쟁하거나, 과도한 수수료 요구</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </article>
+    </div>
 </body>
 </html>
