@@ -28,7 +28,6 @@ nav{
     bottom: 10px;
     left: 220px;
     font-size: 16px;
-    padding: 10px 0;
 }
 
 nav li{
@@ -39,8 +38,8 @@ nav li{
 nav li a{color:white}
 
 #page{width: 900px;
-      margin: 0px auto;
-      padding-bottom: 50px;
+     margin: 0px auto;
+     padding-bottom: 50px;
 }
 
 #main img {
@@ -60,4 +59,23 @@ nav li a{color:white}
 
 #banner strong {
     font-size: 20px;
+}
+
+article section {
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #f4f7fa;
+    border-radius: 8px;
+}
+
+article h1 {
+    font-size: 18px;
+    color: #0f1f33;
+    margin-bottom: 10px;
+}
+
+article p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #333;
 }
