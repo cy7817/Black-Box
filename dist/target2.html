@@ -2,47 +2,168 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>자율교육과정 웹사이트</title>
+    <title>SURVEY - 자율교육과정</title>
+    <link rel="stylesheet" href="stylesheet.css">
 
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="./stylesheet.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        padding: 30px;
+        background-color: #f0f2f5;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 24px;
+        color: #333;
+      }
+
+      .chart-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .chart-card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        padding: 25px 20px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .chart-card h3 {
+        text-align: center;
+        font-size: 16px;
+        margin-bottom: 20px;
+        color: #222;
+      }
+
+      .chart-box {
+        height: 280px;
+        width: 100%;
+        margin: 0;
+      }
+
+       #content {
+            margin-bottom: 40px;}
+    </style>
+    <script type="text/javascript">
+      google.charts.load("current", { packages: ["corechart"] });
+      google.charts.setOnLoadCallback(drawCharts);
+
+      const questions = [
+        { col: "B", title: "주로 사용하는 검색 플랫폼은?" },
+        { col: "C", title: "주로 사용하는 SNS는?" },
+        { col: "D", title: "특정 플랫폼을 반복적으로 사용하는 편이다" },
+        { col: "E", title: "사용하던 플랫폼을 다른 서비스로 바꾸는 것이 어렵다고 느껴진다" },
+        { col: "F", title: "많은 데이터를 가진 기업이 시장에서 더 유리하다고 생각한다" },
+        { col: "G", title: "대형 플랫폼 기업의 서비스를 대체할 수 있는 것이 거의 없다고 느낀다" },
+        { col: "H", title: "서비스가 재미있거나 유용하다면 어느 정도의 개인정보는 제공해도 괜찮다." },
+        { col: "I", title: "앱을 설치했을 때, 위치나 연락처 등의 접근 권한을 요청받으면 불안하게 느껴진다." },
+        { col: "J", title: "서비스 제공 업체가 내 개인정보를 제대로 보호하지 않을 것 같아 불안할 때가 있다." },
+        { col: "K", title: "웹사이트에서 쿠키 사용 동의를 요청하면 '모두 허용'을 선택하는 편이다." },
+        { col: "L", title: "신독점 기업의 기업 분할이 필요하다" },
+        { col: "M", title: "신독점 기업들의 인수합병에 사전 심사나 제한이 필요하다" },
+        { col: "N", title: "플랫폼 내 자사 서비스 우대를 금지해야 한다" },
+        { col: "O", title: "데이터 이동권을 법제화해야 한다" },
+      ];
+
+      function drawCharts() {
+        const grid = document.createElement("div");
+        grid.className = "chart-grid";
+        document.body.appendChild(grid);
+
+        questions.forEach((q) => {
+          const card = document.createElement("div");
+          card.className = "chart-card";
+
+          const title = document.createElement("h3");
+          title.innerText = q.title;
+
+          const chartDiv = document.createElement("div");
+          chartDiv.className = "chart-box";
+          chartDiv.id = `chart_${q.col}`;
+
+          card.appendChild(title);
+          card.appendChild(chartDiv);
+          grid.appendChild(card);
+
+          drawChart(q.col, chartDiv.id);
+        });
+      }
+
+      function drawChart(column, elementId) {
+        const sheetID = "1M7IqSzow__Wzx2G5jfithvCgzOB4cTN5pNYw2lG8heY";
+        const sheetName = encodeURIComponent("응답");
+        const queryString = encodeURIComponent(
+          `SELECT ${column}, count(${column}) GROUP BY ${column} LABEL count(${column}) '응답 수'`
+        );
+        const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?sheet=${sheetName}&tq=${queryString}`;
+
+        const query = new google.visualization.Query(url);
+        query.send((response) => {
+          if (response.isError()) {
+            document.getElementById(elementId).innerText =
+              "오류 발생: " + response.getMessage();
+            return;
+          }
+
+          const data = response.getDataTable();
+
+          const chart = new google.visualization.PieChart(
+            document.getElementById(elementId)
+          );
+
+          chart.draw(data, {
+            title: "",
+            pieHole: 0.3,
+            legend: {
+                position: "bottom",
+                textStyle: {fontSize: 14}
+            },
+            chartArea: {
+                width: "90%",
+                height: "80%",  // 높이 조정
+                top: 10,         // 위쪽 여백 확보
+                bottom: 30
+            }
+            });
+        });
+      }
+    </script>
 </head>
 <body>
     <div id="page">
         <header>
             <div id="logo">
-                <img src="/blackbox.png" alt="logo">            
+                <img src="/blackbox 이미지.png" alt="logo">
             </div>
-        
             <nav>
                 <ul>
-                    <li><a href="/index.html">HOME</a></li>
-                    <li><a href="/target1.html">INSTANCES</a></li>
-                    <li><a href="/target2.html">SURVEY</a></li>
-                    <li><a href="/target3.html">SOLUTIONS</a></li>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="instances.html">INSTANCES</a></li>
+                    <li><a href="survey.html">SURVEY</a></li>
+                    <li><a href="solutions.html">SOLUTIONS</a></li>
                 </ul>
             </nav>
         </header>
-     
-        
-       
-        <article id="content">
-            <section id="main">
-                <img src="/blackcompany.png" alt="main img">
-            </section>
 
+        <article id="content">
             <section>
-                <ul id="banner">
-                    
-                    <li><p><strong>설문조사 </p>
-                        <p>신독점은 디지털 기술, 플랫폼, 데이터 등을 기반으로 네트워크 효과와 플랫폼 잠금 효과를 통해 경쟁을 배제하고 시장을 장악하는 현대적 독점 형태를 의미함</p></li>
-                    <li>
-                        <p><strong><a href="https://forms.gle/nfe6xvQYddgwVSWh6" target="/survey"> 설문하러 가기 </a></strong></p>
-                    </li>
-                </ul>
+                <h1>설문 참여</h1>
+                <p>
+                아래 링크를 클릭하면 설문에 참여할 수 있습니다.<br><br>
+                👉 <a href="https://forms.gle/nfe6xvQYddgwVSWh6" target="_blank">설문 폼 열기</a>
+                </p>
             </section>
         </article>
     </div>
 </body>
 </html>
-
